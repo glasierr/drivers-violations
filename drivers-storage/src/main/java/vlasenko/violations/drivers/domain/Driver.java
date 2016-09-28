@@ -1,11 +1,9 @@
-package vlasenko.violations.drivers.storage.domain;
+package vlasenko.violations.drivers.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "drivers")
@@ -18,14 +16,18 @@ public class Driver implements Serializable {
     private String name;
     private String surname;
 
+    @NotNull
     @Column(name = "licence_number", nullable = false)
     private String licenceNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
-    private Set<RegisteredVehicles> registeredVehicles;
+    @NotNull
+    @Column(name = "vehicle_registration_number", nullable = false)
+    private String vehicleRegistrationNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "primaryKey.driver")
-    private Set<DriverCommunication> driverCommunications = new HashSet<>();
+    private String email;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public long getId() {
         return id;
@@ -59,20 +61,28 @@ public class Driver implements Serializable {
         this.licenceNumber = licenceNumber;
     }
 
-    public Set<RegisteredVehicles> getRegisteredVehicles() {
-        return registeredVehicles;
+    public String getVehicleRegistrationNumber() {
+        return vehicleRegistrationNumber;
     }
 
-    public void setRegisteredVehicles(Set<RegisteredVehicles> registeredVehicles) {
-        this.registeredVehicles = registeredVehicles;
+    public void setVehicleRegistrationNumber(String vehicleRegistrationNumber) {
+        this.vehicleRegistrationNumber = vehicleRegistrationNumber;
     }
 
-    public Set<DriverCommunication> getDriverCommunications() {
-        return driverCommunications;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDriverCommunications(Set<DriverCommunication> driverCommunications) {
-        this.driverCommunications = driverCommunications;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -95,7 +105,9 @@ public class Driver implements Serializable {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", licenceNumber='" + licenceNumber + '\'' +
-                ", registeredVehicles=" + registeredVehicles +
+                ", vehicleRegistrationNumber='" + vehicleRegistrationNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
