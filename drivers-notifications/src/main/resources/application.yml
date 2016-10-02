@@ -1,0 +1,14 @@
+spring:
+  profiles.active: default
+
+---
+logging:
+  level:
+    org:
+      springframework: DEBUG
+
+spring:
+  profiles: default
+
+server:
+  port: 8082
