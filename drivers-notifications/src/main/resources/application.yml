@@ -1,0 +1,10 @@
+spring:
+  profiles.active: default
+
+---
+
+spring:
+  profiles: default
+
+server:
+  port: 8082
