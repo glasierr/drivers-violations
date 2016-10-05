@@ -16,16 +16,26 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <activiti.version>5.19.0.2</activiti.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter-basic</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
 
         <dependency>
@@ -66,7 +76,7 @@
                 </executions>
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>vlasenko.violations.police.notifier.service</generatePackage>
+                    <generatePackage>vlasenko.violations.police.notifications.service</generatePackage>
                     <schemas>
                         <schema>
                             <url>http://localhost:8082/ws/notifications.wsdl</url>

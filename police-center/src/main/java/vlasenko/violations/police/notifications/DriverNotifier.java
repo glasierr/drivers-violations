@@ -1,8 +1,10 @@
-package vlasenko.violations.police.notifier;
+package vlasenko.violations.police.notifications;
 
+import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import vlasenko.violations.police.notifier.service.NotificationRequest;
+import vlasenko.violations.police.notifications.service.NotificationRequest;
 
+@Component
 public class DriverNotifier extends WebServiceGatewaySupport {
 
     public void notifyDriver(NotificationRequest request) {

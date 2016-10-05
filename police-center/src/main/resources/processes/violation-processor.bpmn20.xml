@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn" typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+    <process id="violationProcession" name="Violation processor" isExecutable="true">
+        <startEvent id="start" name="Start"/>
+        <sequenceFlow id="flow6" sourceRef="start" targetRef="checkViolationLength"/>
+        <exclusiveGateway id="checkViolationLength" name="Check violation length"/>
+
+        <serviceTask id="notifyDriver" name="Service Task" activiti:expression="${violationProcessor.sendViolation(violation, driverId)}"/>
+        <sequenceFlow id="flow7" sourceRef="checkViolationLength" targetRef="notifyDriver">
+            <conditionExpression xsi:type="tFormalExpression">${violation.length()!=4}</conditionExpression>
+        </sequenceFlow>
+
+        <serviceTask id="ignoreViolation" name="Service Task" activiti:expression="${violationProcessor.suppressViolation(violation)}"/>
+        <sequenceFlow id="flow8" sourceRef="checkViolationLength" targetRef="ignoreViolation">
+            <conditionExpression xsi:type="tFormalExpression">${violation.length()==4}</conditionExpression>
+        </sequenceFlow>
+
+        <sequenceFlow id="flow5" sourceRef="notifyDriver" targetRef="end"/>
+        <sequenceFlow id="flow9" sourceRef="ignoreViolation" targetRef="end"/>
+        <endEvent id="end" name="End"/>
+    </process>
+</definitions>
