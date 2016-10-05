@@ -3,7 +3,7 @@ package vlasenko.violations.police.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import vlasenko.violations.police.notifier.DriverNotifier;
+import vlasenko.violations.police.notifications.DriverNotifier;
 
 @Configuration
 public class ServiceConfiguration {
@@ -11,7 +11,7 @@ public class ServiceConfiguration {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("vlasenko.violations.police.notifier.service");
+        marshaller.setContextPath("vlasenko.violations.police.notifications.service");
         return marshaller;
     }
 
