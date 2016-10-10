@@ -1,5 +1,6 @@
 package vlasenko.violations.drivers.resource;
 
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,12 @@ public class DriversResource {
         return driversRepository.findAll();
     }
 
+    @ApiOperation(value = "getDriver", nickname = "getDriver")
+    @ApiImplicitParams(@ApiImplicitParam(name = "id", value = "Driver's id", dataType = "long", paramType = "path"))
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = Driver.class),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
     @RequestMapping(method = GET, path = "/{id}")
     public Driver getDriver(@PathVariable long id) {
         return driversRepository.findById(id).orElseThrow(DriverNotFoundException::new);
@@ -44,7 +51,7 @@ public class DriversResource {
     }
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Driver was not found")
-    @ExceptionHandler(value = { DriverNotFoundException.class, EmptyResultDataAccessException.class })
+    @ExceptionHandler(value = {DriverNotFoundException.class, EmptyResultDataAccessException.class})
     public void driverNotFound() {
     }
 }
