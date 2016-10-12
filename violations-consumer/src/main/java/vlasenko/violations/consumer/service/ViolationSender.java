@@ -17,4 +17,8 @@ public class ViolationSender {
     public void sendViolation(Violation violation) {
         jmsTemplate.convertAndSend("violations", violation);
     }
+
+    public void sendViolation(String violation) {
+        jmsTemplate.convertAndSend("violations", violation);
+    }
 }

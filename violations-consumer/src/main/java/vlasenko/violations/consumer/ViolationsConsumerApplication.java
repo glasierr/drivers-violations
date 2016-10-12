@@ -16,7 +16,7 @@ public class ViolationsConsumerApplication {
     @Bean
     CommandLineRunner lookup(ViolationSender sender) {
         return args -> {
-            sender.sendViolation(new Violation("BAAD", 1));
+            sender.sendViolation("BIG VIOLATION");
             System.out.println("sent");
         };
     }

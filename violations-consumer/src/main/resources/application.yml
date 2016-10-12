@@ -5,6 +5,12 @@ spring:
 
 spring:
   profiles: default
+  hornetq:
+    mode: native
+    host: 127.0.0.1
+    port: 5455
+    user: guest
+    password: guest
 
 server:
   port: 8084
