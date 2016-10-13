@@ -1,10 +1,10 @@
 package vlasenko.violations.consumer;
 
+import com.google.gson.Gson;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jms.annotation.EnableJms;
 import vlasenko.violations.consumer.service.ViolationSender;
 
 @SpringBootApplication
@@ -16,8 +16,7 @@ public class ViolationsConsumerApplication {
     @Bean
     CommandLineRunner lookup(ViolationSender sender) {
         return args -> {
-            sender.sendViolation("BIG VIOLATION");
-            System.out.println("sent");
+            sender.sendViolation(new Gson().toJson(new Violation("violation", 1)));
         };
     }
 }
