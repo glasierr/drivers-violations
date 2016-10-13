@@ -1,5 +1,6 @@
 package vlasenko.violations.consumer.service;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -9,21 +10,21 @@ import vlasenko.violations.consumer.Violation;
 @Service
 public class ViolationSender {
     private final JmsTemplate jmsTemplate;
-    
+
     @Autowired
     public ViolationSender(JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
-    
+
     public void sendViolation(Violation violation) {
-        jmsTemplate.convertAndSend("violations", violation);
+        sendViolation(new Gson().toJson(violation));
     }
 
     public void sendViolation(JsonObject violation) {
-        jmsTemplate.convertAndSend("violations", violation);
+        sendViolation(violation.toString());
     }
 
-    public void sendViolation(String violation) {
+    private void sendViolation(String violation) {
         jmsTemplate.convertAndSend("violations", violation);
     }
 }
