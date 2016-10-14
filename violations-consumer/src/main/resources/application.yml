@@ -1,0 +1,25 @@
+spring:
+  profiles.active: default
+
+---
+
+spring:
+  profiles: default
+  hornetq:
+    mode: native
+    host: 127.0.0.1
+    port: 5455
+    user: guest
+    password: guest
+
+server:
+  port: 8084
+
+database:
+  driverName: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/violations
+  username: postgres
+  password:
+  hibernateDialect: org.hibernate.dialect.PostgreSQL94Dialect
+  hibernateShowSql: true
+  hibernateHbm2ddl: create
