@@ -14,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @SpringBootApplication
-@ComponentScan("vlasenko.violations.drivers")
 @EnableJpaRepositories("vlasenko.violations.drivers.repository")
 @EnableSwagger2
 public class DriversStorageApplication {
@@ -36,7 +35,7 @@ public class DriversStorageApplication {
         return new ApiInfoBuilder()
                 .title("Drivers storage API")
                 .description("Drivers storage REST API documentation")
-                .version("2.0")
+                .version("1.0")
                 .build();
     }
 }
