@@ -1,11 +1,19 @@
-package vlasenko.violations.consumer;
+package vlasenko.violations.consumer.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "violations")
 public class Violation implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
     @NotNull
     @NotEmpty
     private String violation;
@@ -32,5 +40,9 @@ public class Violation implements Serializable {
     
     public void setDriverId(Long driverId) {
         this.driverId = driverId;
+    }
+    
+    public int getId() {
+        return id;
     }
 }

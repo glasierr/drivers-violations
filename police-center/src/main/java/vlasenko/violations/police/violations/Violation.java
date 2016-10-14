@@ -1,4 +1,4 @@
-package vlasenko.violations.storage;
+package vlasenko.violations.police.violations;
 
 import java.io.Serializable;
 

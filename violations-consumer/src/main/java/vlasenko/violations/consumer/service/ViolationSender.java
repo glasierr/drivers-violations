@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
-import vlasenko.violations.consumer.Violation;
+import vlasenko.violations.consumer.domain.Violation;
 
 @Service
 public class ViolationSender {
