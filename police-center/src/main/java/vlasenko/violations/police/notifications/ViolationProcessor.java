@@ -1,6 +1,5 @@
 package vlasenko.violations.police.notifications;
 
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vlasenko.violations.police.notifications.service.NotificationRequest;
@@ -21,15 +20,15 @@ public class ViolationProcessor {
     public void sendViolation(String violation, long driverId) {
         NotificationRequest request = new NotificationRequest();
         
-        JsonObject driver = driverInformation.getDriverInformation(driverId).orElseThrow(() ->
+        Driver driver = driverInformation.getDriverInformation(driverId).orElseThrow(() ->
                 new IllegalArgumentException("No driver was found with id " + driverId));
         
-        request.setName(driver.getAsJsonPrimitive("name").toString());
-        request.setSurname(driver.getAsJsonPrimitive("surname").toString());
-        request.setLicenceNumber(driver.getAsJsonPrimitive("licenceNumber").toString());
-        request.setEmail(driver.getAsJsonPrimitive("email").toString());
-        request.setVehicleRegistrationNumber(driver.getAsJsonPrimitive("vehicleRegistrationNumber").toString());
-        request.setPhoneNumber(driver.getAsJsonPrimitive("phoneNumber").toString());
+        request.setName(driver.getName());
+        request.setSurname(driver.getSurname());
+        request.setLicenceNumber(driver.getLicenceNumber());
+        request.setEmail(driver.getEmail());
+        request.setVehicleRegistrationNumber(driver.getVehicleRegistrationNumber());
+        request.setPhoneNumber(driver.getPhoneNumber());
         request.setViolation(violation);
     
         System.out.println("Sending violation: " + violation + " to driver " + driverId);
