@@ -1,6 +1,8 @@
 package vlasenko.violations.consumer.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @RestController
+@RequestMapping(value = "/violations", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ViolationConsumerApi {
 
     private ViolationSender sender;
@@ -23,8 +26,8 @@ public class ViolationConsumerApi {
         this.violationsRepository = violationsRepository;
     }
     
-    @RequestMapping(method = RequestMethod.POST, path = "/violations")
-    public void consumeViolation(@NotNull @Valid Violation violation) {
+    @RequestMapping(method = RequestMethod.POST)
+    public void consumeViolation(@RequestBody @NotNull @Valid Violation violation) {
         violationsRepository.save(violation);
         sender.sendViolation(violation);
     }

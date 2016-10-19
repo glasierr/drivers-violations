@@ -19,7 +19,7 @@ database:
   driverName: org.postgresql.Driver
   url: jdbc:postgresql://localhost:5432/violations
   username: postgres
-  password:
+  password: postgres
   hibernateDialect: org.hibernate.dialect.PostgreSQL94Dialect
   hibernateShowSql: true
   hibernateHbm2ddl: create

@@ -20,7 +20,9 @@ public class Violation implements Serializable {
 
     @NotNull
     private Long driverId;
-    
+
+    public Violation() {}
+
     public Violation(String violation, Long driverId) {
         this.violation = violation;
         this.driverId = driverId;
